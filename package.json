@@ -15,6 +15,7 @@
     "hypercore-archiver": "^4.4.1",
     "hypercore-protocol": "^6.5.1",
     "hyperdiscovery": "^7.0.0",
+    "minimist": "^1.2.0",
     "pretty-hash": "^1.0.1"
   },
   "devDependencies": {

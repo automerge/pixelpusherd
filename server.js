@@ -3,6 +3,13 @@ const swarm = require('hypercore-archiver/swarm')
 const hypercore = require('hypercore')
 const hyperdiscovery = require('hyperdiscovery')
 const prettyHash = require('pretty-hash')
+const minimist = require('minimist')
+
+const argv = minimist(process.argv.slice(2), {boolean: ['debug']})
+if (argv.help || !argv.name) {
+  console.log('Usage: node server --name=<name> [--debug]\n')
+  process.exit(1)
+}
 
 const masterListKeys = new Set()
 
@@ -58,7 +65,9 @@ masterList.ready(() => {
 })
 
 function joinSwarm () {
-  const sw = hyperdiscovery(masterList)
+  const sw = hyperdiscovery(masterList, {
+    stream: () => masterList.replicate({userData: Buffer.from(argv.name)})
+  })
   sw.on('connection', (peer, info) => {
     console.log('Connection')
     const key = peer.remoteUserData.toString()

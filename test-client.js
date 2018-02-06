@@ -20,6 +20,8 @@ feed.ready(() => {
     stream: () => feed.replicate({userData: publishKey})
   })
   sw.on('connection', peer => {
+    const name = peer.remoteUserData.toString()
+    console.log('Remote name:', name)
     if (sw.connections.length > 0) {
       process.exit()
     }
