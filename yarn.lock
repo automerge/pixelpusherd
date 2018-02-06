@@ -1254,7 +1254,7 @@ prelude-ls@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
 
-pretty-hash@^1.0.0:
+pretty-hash@^1.0.0, pretty-hash@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/pretty-hash/-/pretty-hash-1.0.1.tgz#16e0579188def56bdb565892bcd05a5d65324807"
 
