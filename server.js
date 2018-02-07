@@ -66,10 +66,16 @@ masterList.ready(() => {
 
 function joinSwarm () {
   const sw = hyperdiscovery(masterList, {
-    stream: () => masterList.replicate({userData: Buffer.from(argv.name)})
+    stream: () => masterList.replicate({
+      live: true,
+      userData: Buffer.from(argv.name)
+    })
   })
   sw.on('connection', (peer, info) => {
     console.log('Connection')
+    peer.on('error', err => { console.error('Error', err) })
+    peer.on('close', () => { console.log('Closed') })
+    if (!peer.remoteUserData) return
     const key = peer.remoteUserData.toString()
     if (key) {
       if (!masterListKeys.has(key)) {
