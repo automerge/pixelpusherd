@@ -5,6 +5,8 @@ const hyperdiscovery = require('hyperdiscovery')
 const prettyHash = require('pretty-hash')
 const minimist = require('minimist')
 
+require('events').EventEmitter.prototype._maxListeners = 100
+
 const argv = minimist(process.argv.slice(2), {boolean: ['debug']})
 if (argv.help || !argv.name) {
   console.log('Usage: node server --name=<name> [--debug]\n')
