@@ -65,18 +65,24 @@ masterList.ready(() => {
 })
 
 function joinSwarm () {
+  const userData = JSON.stringify({
+    name: argv.name
+  })
   const sw = hyperdiscovery(masterList, {
-    stream: () => masterList.replicate({
-      live: true,
-      userData: Buffer.from(argv.name)
-    })
+    stream: () => masterList.replicate({live: true, userData})
   })
   sw.on('connection', (peer, info) => {
     console.log('Connection')
     peer.on('error', err => { console.error('Error', err) })
     peer.on('close', () => { console.log('Closed') })
     if (!peer.remoteUserData) return
-    const key = peer.remoteUserData.toString()
+    let key
+    try {
+      const json = JSON.parse(peer.remoteUserData.toString())
+      key = json.key
+    } catch (e) {
+      console.error('Error parsing userData -- not JSON?')
+    }
     if (key) {
       if (!masterListKeys.has(key)) {
         console.log('Feed key added:', key)
@@ -86,6 +92,8 @@ function joinSwarm () {
       } else {
         console.log('Already have:', key)
       }
+    } else {
+      console.log('Feed key not found')
     }
   })
 }
