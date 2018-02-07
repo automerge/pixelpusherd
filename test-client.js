@@ -16,14 +16,21 @@ console.log('Pushing key:', publishKey)
 
 const feed = hypercore(ram, key)
 feed.ready(() => {
+  const userData = JSON.stringify({
+    key: publishKey
+  })
   const sw = hyperdiscovery(feed, {
-    stream: () => feed.replicate({userData: publishKey})
+    stream: () => feed.replicate({userData})
   })
   sw.on('connection', peer => {
-    const name = peer.remoteUserData.toString()
-    console.log('Remote name:', name)
-    if (sw.connections.length > 0) {
-      process.exit()
+    try {
+      const name = JSON.parse(peer.remoteUserData.toString()).name
+      console.log('Remote name:', name)
+      if (sw.connections.length > 0) {
+        process.exit()
+      }
+    } catch (e) {
+      console.error(e.message)
     }
   })
 })

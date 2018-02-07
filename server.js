@@ -75,13 +75,17 @@ function joinSwarm () {
     console.log('Connection')
     peer.on('error', err => { console.error('Error', err) })
     peer.on('close', () => { console.log('Closed') })
+    if (argv.debug) {
+      console.log('userData:', peer.remoteUserData &&
+                  peer.remoteUserData.toString())
+    }
     if (!peer.remoteUserData) return
     let key
     try {
       const json = JSON.parse(peer.remoteUserData.toString())
-      key = json.key
+      key = /^(dat:\/\/)?([0-9a-f]{64})$/i.exec(json.key)[2]
     } catch (e) {
-      console.error('Error parsing userData -- not JSON?')
+      console.error('Error parsing userData -- not JSON or bad key?')
     }
     if (key) {
       if (!masterListKeys.has(key)) {
