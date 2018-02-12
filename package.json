@@ -1,7 +1,7 @@
 {
   "name": "pixelpusherd",
-  "version": "0.0.1",
-  "description": "Backup/peering server for pixelpusher",
+  "version": "0.0.2",
+  "description": "An archiver daemon for pixelpusher",
   "main": "pixelpusherd.js",
   "bin": {
     "pixelpusherd": "./pixelpusherd.js"
@@ -25,5 +25,12 @@
     "husky": "^0.14.3",
     "random-access-memory": "^2.4.0",
     "standard": "^10.0.3"
+  },
+  "bugs": {
+    "url": "https://github.com/automerge/pixelpusherd/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/automerge/pixelpusherd.git"
   }
 }
