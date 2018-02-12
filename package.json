@@ -2,11 +2,14 @@
   "name": "pixelpusherd",
   "version": "0.0.1",
   "description": "Backup/peering server for pixelpusher",
-  "main": "server.js",
+  "main": "pixelpusherd.js",
+  "bin": {
+    "pixelpusherd": "./pixelpusherd.js"
+  },
   "scripts": {
     "precommit": "standard",
     "prepush": "standard",
-    "start": "node server"
+    "start": "node pixelpusherd"
   },
   "author": "Jim Pick <jim@jimpick.com>",
   "license": "MIT",

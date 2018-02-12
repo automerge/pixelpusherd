@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const archiver = require('hypercore-archiver')
 const swarm = require('hypercore-archiver/swarm')
 const hypercore = require('hypercore')
@@ -7,7 +9,7 @@ const minimist = require('minimist')
 
 require('events').EventEmitter.prototype._maxListeners = 100
 
-const argv = minimist(process.argv.slice(2), {boolean: ['debug']})
+const argv = minimist(process.argv.slice(1), {boolean: ['debug']})
 if (argv.help || !argv.name) {
   console.log('Usage: node server --name=<name> [--debug]\n')
   process.exit(1)
