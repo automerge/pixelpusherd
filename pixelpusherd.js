@@ -11,7 +11,7 @@ require('events').EventEmitter.prototype._maxListeners = 100
 
 const argv = minimist(process.argv.slice(1), {boolean: ['debug']})
 if (argv.help || !argv.name) {
-  console.log('Usage: node server --name=<name> [--debug]\n')
+  console.log('Usage: pixelpusherd --name=<name> [--debug]\n')
   process.exit(1)
 }
 

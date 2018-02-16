@@ -1,6 +1,6 @@
 {
   "name": "pixelpusherd",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An archiver daemon for pixelpusher",
   "main": "pixelpusherd.js",
   "bin": {
@@ -14,7 +14,7 @@
   "author": "Jim Pick <jim@jimpick.com>",
   "license": "MIT",
   "dependencies": {
-    "hypercore": "^6.12.0",
+    "hypercore": "^6.12.2",
     "hypercore-archiver": "^4.4.1",
     "hypercore-protocol": "^6.5.1",
     "hyperdiscovery": "^7.0.0",
